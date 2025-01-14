@@ -1,0 +1,135 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Основные стили для body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Стили для header */
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333; /* Тёмный фон */
+    color: #fff;
+    z-index: 1000; /* Убедимся, что он выше всего остального */
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Тень для панели */
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #ff9800; /* Изменение цвета при наведении */
+}
+
+/* Отступ для основного контента под фиксированный header */
+.main-content {
+    padding: 80px 20px; /* 80px учитывают высоту header */
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.product-item {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-item img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.product-item h3 {
+    font-size: 1.2rem;
+}
+
+.product-item p {
+    color: gray;
+}
+
+.product-item .price {
+    font-weight: bold;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #444;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.product {
+    border: 1px solid #ccc;
+    padding: 15px;
+    width: calc(33.333% - 40px);
+    box-sizing: border-box;
+}
+.product h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+.product p {
+    margin-bottom: 10px;
+}
+.product .price {
+    font-weight: bold;
+    color: #2ecc71;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Делаем ссылки вертикальными */
+    }
+
+    .navbar a {
+        padding: 10px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .product {
+        width: calc(50% - 40px);
+    }
+}
+@media (max-width: 480px) {
+    .product {
+        width: 100%;
+    }
+}
