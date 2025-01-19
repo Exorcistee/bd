@@ -4,7 +4,6 @@ session_start();
 
 header("Content-Type: application/json; charset=UTF-8");
 
-// Проверяем, авторизован ли пользователь
 if (!isset($_SESSION['user_id'])) {
     echo json_encode([
         "success" => false,
@@ -16,7 +15,6 @@ if (!isset($_SESSION['user_id'])) {
 $userId = $_SESSION['user_id'];
 
 try {
-    // Запрашиваем заказы пользователя
     $stmt = $pdo->prepare("SELECT id, status, created_at FROM orders WHERE user_id = :user_id ORDER BY created_at DESC");
     $stmt->execute([':user_id' => $userId]);
     $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);

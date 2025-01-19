@@ -1,135 +1,442 @@
+/* Общие стили */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Основные стили для body */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
 }
 
-/* Стили для header */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 header {
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #333; /* Тёмный фон */
+    background-color: #333;
     color: #fff;
-    z-index: 1000; /* Убедимся, что он выше всего остального */
-    padding: 10px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Тень для панели */
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .navbar {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    padding: 0 20px;
 }
 
 .navbar a {
     color: #fff;
-    text-decoration: none;
     font-size: 16px;
+    margin: 0 10px;
     transition: color 0.3s ease;
 }
 
 .navbar a:hover {
-    color: #ff9800; /* Изменение цвета при наведении */
+    color: #ff9800;
 }
 
-/* Отступ для основного контента под фиксированный header */
-.main-content {
-    padding: 80px 20px; /* 80px учитывают высоту header */
+.navbar a i {
+    margin-right: 5px;
+}
+
+.main-content, .cart-container, .admin-container, .account-container, .order-container, .order-details-container {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-out;
+}
+
+h1, h2, h3 {
+    color: #333;
+    margin-bottom: 20px;
 }
 
 .product-list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
 }
 
-.product-item {
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
+.product {
+    background-color: #fff;
+    border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.product-item img {
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.product img {
     max-width: 100%;
-    border-radius: 5px;
+    border-radius: 8px;
 }
 
-.product-item h3 {
-    font-size: 1.2rem;
+.product h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
 }
 
-.product-item p {
-    color: gray;
+.product p {
+    color: #666;
+    margin: 10px 0;
 }
 
-.product-item .price {
+.product .price {
     font-weight: bold;
+    color: #2ecc71;
+    font-size: 1.2em;
 }
 
 button {
     background-color: #333;
-    color: white;
+    color: #fff;
     border: none;
     padding: 10px 20px;
-    margin-top: 10px;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
     background-color: #444;
+    transform: scale(1.05);
 }
 
-.product-list {
+.login-form, .register-form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.login-form h2, .register-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.textbox {
+    margin-bottom: 15px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    align-items: center;
 }
-.product {
+
+.textbox i {
+    margin-right: 10px;
+    color: #666;
+}
+
+.textbox input {
+    width: 100%;
+    padding: 10px;
     border: 1px solid #ccc;
-    padding: 15px;
-    width: calc(33.333% - 40px);
-    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 16px;
 }
-.product h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
+
+.checkbox {
+    margin-bottom: 15px;
 }
-.product p {
-    margin-bottom: 10px;
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
-.product .price {
+
+.btn:hover {
+    background-color: #444;
+    transform: scale(1.05);
+}
+
+.error-message {
+    color: #ff0000;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.cart-table th, .cart-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-table th {
+    background-color: #f4f4f4;
+}
+
+.cart-table img {
+    max-width: 50px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.cart-total {
+    margin-top: 20px;
+    font-size: 1.2em;
     font-weight: bold;
-    color: #2ecc71;
+    text-align: right;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.orders-table th, .orders-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.orders-table th {
+    background-color: #f4f4f4;
+}
+
+.orders-table select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.account-container {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.order-table th, .order-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.order-table th {
+    background-color: #f4f4f4;
+}
+
+.order-table tr {
+    transition: background-color 0.3s ease;
+}
+
+.order-table tr:hover {
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.order-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.order-container {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.order-header {
+    margin-bottom: 20px;
+}
+
+.order-header h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.order-table img {
+    max-width: 50px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.order-total {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
 }
 
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column; /* Делаем ссылки вертикальными */
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .navbar a {
-        padding: 10px 0;
+        margin: 10px 0;
+    }
+
+    .product-list {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .cart-table, .orders-table, .order-table {
+        display: block;
+        overflow-x: auto;
     }
 }
 
-@media (max-width: 768px) {
-    .product {
-        width: calc(50% - 40px);
-    }
-}
 @media (max-width: 480px) {
     .product {
         width: 100%;
     }
+}
+
+.address-input {
+    width: 100%; 
+    padding: 10px;
+    font-size: 16px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    box-sizing: border-box; 
+    transition: border-color 0.3s ease; 
+}
+
+.address-input:focus {
+    border-color: #4CAF50; 
+    outline: none; 
+}
+
+.address-input::placeholder {
+    color: #888; 
+    font-style: italic; 
+}
+
+.address-input:invalid {
+    border-color: #FF0000; 
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease;
+}
+
+/* Изменение цвета кнопки при наведении */
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+.product {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.product-images {
+    flex-shrink: 0;
+    margin-right: 20px;
+}
+
+.product-images img {
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.product-details {
+    flex-grow: 1;
+}
+
+.product-details h2 {
+    font-size: 1.5rem;
+    margin: 0 0 10px;
+}
+
+.product-details p {
+    font-size: 1rem;
+    margin: 0 0 10px;
+}
+
+.product-details .price {
+    font-weight: bold;
+    color: #2e8b57;
+    margin: 0 0 10px;
+}
+
+.add-to-cart-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #45a049;
 }

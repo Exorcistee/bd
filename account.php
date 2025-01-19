@@ -9,6 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 
 // Данные пользователя из сессии
 $userName = $_SESSION['user_name'];
+$userRole = $_SESSION['role_id']; // Предполагаем, что роль хранится в сессии как 'role'
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +29,9 @@ $userName = $_SESSION['user_name'];
         <a href="/bd/index.php" id="home-link">Главная</a>
         <a href="/bd/account.php" id="profile-link">Личный кабинет</a>
         <a href="/bd/logout.php" id="logout-link">Выйти</a>
+        <?php if ($userRole === 3): ?>
+            <a href="/bd/admin.php" id="admin-link">Админ панель</a>
+        <?php endif; ?>
     </div>
 </header>
 
@@ -68,7 +72,6 @@ $userName = $_SESSION['user_name'];
                 loadingMessage.style.display = 'none';
                 ordersTable.style.display = 'table';
 
-                // Заполняем таблицу заказов
                 data.orders.forEach(order => {
                     const row = document.createElement('tr');
                     row.onclick = () => window.location.href = `/bd/order.php?order_id=${order.id}`;
@@ -92,7 +95,6 @@ $userName = $_SESSION['user_name'];
         }
     }
 
-    // Загружаем заказы при загрузке страницы
     fetchOrders();
 </script>
 </body>

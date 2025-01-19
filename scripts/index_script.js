@@ -33,7 +33,7 @@ async function addToCart(productId) {
             },
             body: JSON.stringify({
                 product_id: productId,
-                quantity: 1 // Добавляем один товар по умолчанию
+                quantity: 1 
             }),
         });
 
@@ -42,7 +42,7 @@ async function addToCart(productId) {
         if (data.success) {
             alert('Товар добавлен в корзину');
         } else {
-            alert(data.message); // Сообщение об ошибке
+            alert(data.message);
         }
     } catch (error) {
         console.error('Ошибка при добавлении в корзину:', error);
@@ -50,6 +50,4 @@ async function addToCart(productId) {
     }
 }
 
-
-// Инициализация страницы
 fetchProducts();

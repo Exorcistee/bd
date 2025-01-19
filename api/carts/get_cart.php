@@ -4,7 +4,6 @@ session_start();
 
 header("Content-Type: application/json; charset=UTF-8");
 
-// Проверяем авторизацию
 if (!isset($_SESSION['user_id'])) {
     echo json_encode([
         "success" => false,
@@ -16,7 +15,6 @@ if (!isset($_SESSION['user_id'])) {
 $userId = $_SESSION['user_id'];
 
 try {
-    // Получаем ID корзины пользователя
     $stmt = $pdo->prepare("SELECT id FROM carts WHERE user_id = :user_id");
     $stmt->execute([':user_id' => $userId]);
     $cart = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -32,7 +30,6 @@ try {
 
     $cartId = $cart['id'];
 
-    // Получаем товары из корзины
     $stmt = $pdo->prepare("
         SELECT 
             p.id AS product_id,

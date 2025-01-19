@@ -4,7 +4,6 @@ session_start();
 
 header("Content-Type: application/json; charset=UTF-8");
 
-// Проверяем авторизацию
 if (!isset($_SESSION['user_id'])) {
     echo json_encode([
         "success" => false,
@@ -13,7 +12,6 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-// Проверяем параметр order_id
 if (!isset($_GET['order_id']) || !is_numeric($_GET['order_id'])) {
     echo json_encode([
         "success" => false,
@@ -26,7 +24,7 @@ $orderId = intval($_GET['order_id']);
 $userId = $_SESSION['user_id'];
 
 try {
-    // Проверяем, принадлежит ли заказ текущему пользователю
+
     $stmt = $pdo->prepare("SELECT id FROM orders WHERE id = :order_id AND user_id = :user_id");
     $stmt->execute([':order_id' => $orderId, ':user_id' => $userId]);
 
@@ -38,7 +36,6 @@ try {
         exit;
     }
 
-    // Получаем товары для заказа
     $stmt = $pdo->prepare("
         SELECT p.id, p.name, ohp.quantity, ohp.price
         FROM order_has_product ohp
@@ -48,7 +45,6 @@ try {
     $stmt->execute([':order_id' => $orderId]);
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Добавляем изображения для каждого товара
     foreach ($products as &$product) {
         $stmtImages = $pdo->prepare("SELECT image_url FROM product_images WHERE product_id = :product_id");
         $stmtImages->execute([':product_id' => $product['id']]);

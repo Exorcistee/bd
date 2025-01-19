@@ -16,7 +16,6 @@ require_once 'config/database.php';
 <header>
         <div class="navbar">
             <a href="/bd/index.php" id="home-link">Главная</a>
-            <a href="/bd/order.php" id="orders-link">Мои заказы</a>
             <a href="/bd/cart.php" id="cart-link">Корзина</a>
             <a href="/bd/login.php" id="login-link">Войти</a>
         </div>
@@ -32,16 +31,12 @@ require_once 'config/database.php';
         <div class="textbox">
             <input type="password" id="password" name="password" placeholder="Пароль" required>
         </div>
-        <div class="checkbox">
-            <input type="checkbox" id="remember-me">
-            <label for="remember-me">Запомнить меня</label>
-        </div>
         <button type="submit" class="btn">Войти</button>
         <div id="error-message" class="error-message"></div>
     </form>
     <div class="footer">
         <a href="#">Забыли пароль?</a>
-        <p>Еще нет аккаунта? <a href="#">Зарегистрироваться</a></p>
+        <p>Еще нет аккаунта? <a href="/bd/register.php">Зарегистрироваться</a></p>
     </div>
     </div>
 

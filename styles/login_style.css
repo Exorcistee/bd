@@ -1,11 +1,10 @@
-/* Сброс стилей */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Основные стили для body */
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: #f2f2f2;
@@ -18,7 +17,7 @@ body {
     flex-direction: column;
 }
 
-/* Стили для header */
+
 header {
     width: 100%;
     position: fixed;
@@ -47,10 +46,10 @@ header {
 }
 
 .navbar a:hover {
-    color: #ff9800; /* Изменение цвета при наведении */
+    color: #ff9800; 
 }
 
-/* Центрированная форма */
+
 .login-container {
     width: 100%;
     max-width: 400px;
@@ -59,17 +58,15 @@ header {
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-top: 20px; /* Отступ для формы */
+    margin-top: 20px;
 }
 
-/* Заголовок формы */
 h2 {
     font-size: 24px;
     color: #333;
     margin-bottom: 20px;
 }
 
-/* Поля ввода */
 .textbox input {
     width: 100%;
     padding: 10px 15px;
@@ -88,7 +85,6 @@ h2 {
     background-color: #fff;
 }
 
-/* Чекбокс */
 .checkbox {
     display: flex;
     align-items: center;
@@ -101,7 +97,6 @@ h2 {
     margin-right: 8px;
 }
 
-/* Кнопка входа */
 .btn {
     width: 100%;
     padding: 12px 15px;
@@ -123,7 +118,6 @@ h2 {
     background-color: #0e0e0e;
 }
 
-/* Ссылки внизу формы */
 .footer {
     text-align: center;
     margin-top: 20px;

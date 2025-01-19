@@ -85,7 +85,6 @@ error_log("Преобразованный order_id: " . $orderId);
 
                 console.log('123');
 
-                // Берём первое изображение из массива или устанавливаем "Нет изображения"
                 const imageUrl = product.images && product.images.length > 0 
                     ? product.images[0] 
                     : '/bd/images/noimage.png';

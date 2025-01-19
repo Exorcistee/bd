@@ -4,7 +4,6 @@ session_start();
 
 header("Content-Type: application/json; charset=UTF-8");
 
-// Проверяем авторизацию
 if (!isset($_SESSION['user_id'])) {
     echo json_encode([
         "success" => false,
@@ -14,10 +13,10 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $userId = $_SESSION['user_id'];
-$productId = $_POST['product_id'] ?? null;
-$quantity = $_POST['quantity'] ?? 1; // Если количество не указано, используем 1
+$input = json_decode(file_get_contents('php://input'), true);
+$productId = $input['product_id'] ?? 1;
+$quantity = $input['quantity'] ?? 1;
 
-// Проверяем входные данные
 if (!$productId || !is_numeric($productId)) {
     echo json_encode([
         "success" => false,

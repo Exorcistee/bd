@@ -20,7 +20,6 @@ $isLoggedIn = isset($_SESSION['user_id']);
     <header>
         <div class="navbar">
             <a href="/bd/index.php" id="home-link">Главная</a>
-            <a href="/bd/order.php" id="orders-link">Мои заказы</a>
             <a href="/bd/cart.php" id="cart-link">Корзина</a>
             <?php if ($isLoggedIn): ?>
                 <a href="/bd/account.php" id="profile-link">Личный кабинет</a>
@@ -30,39 +29,39 @@ $isLoggedIn = isset($_SESSION['user_id']);
             <?php endif; ?>
         </div>
     </header>
-    <script src="/bd/scripts/index_script.js"></script>            
+    
     <div class="main-content">
-    <h1>Наши Товары</h1>
-    <div id="product-list">
-        <?php
-        if ($data['success'] && count($data['products']) > 0) {
-            foreach ($data['products'] as $product) {
-                echo '<div class="product">';
-                echo '<h2>' . htmlspecialchars($product['name']) . '</h2>';
-                echo '<p>' . htmlspecialchars($product['description']) . '</p>';
-                echo '<p class="price">Цена: ' . number_format($product['price'], 2, ',', ' ') . ' руб.</p>';
-                echo '<div class="product-images">';
-
-                if (!empty($product['images'])) {
-                    foreach ($product['images'] as $image) {
-                        echo '<img src="' . htmlspecialchars($image) . '" alt="' . htmlspecialchars($product['name']) . '" />';
+        <h1>Наши Товары</h1>
+        <div id="product-list">
+            <?php
+            if ($data['success'] && count($data['products']) > 0) {
+                foreach ($data['products'] as $product) {
+                    echo '<div class="product">';
+                    echo '<div class="product-images">';
+                    if (!empty($product['images'])) {
+                        foreach ($product['images'] as $image) {
+                            echo '<img src="' . htmlspecialchars($image) . '" alt="' . htmlspecialchars($product['name']) . '" />';
+                        }
+                    } else {
+                        echo '<p>Изображений нет.</p>';
                     }
-                } else {
-                    echo '<p>Изображений нет.</p>';
+                    echo '</div>';
+
+                    echo '<div class="product-details">';
+                    echo '<h2>' . htmlspecialchars($product['name']) . '</h2>';
+                    echo '<p>' . htmlspecialchars($product['description']) . '</p>';
+                    echo '<p class="price">Цена: ' . number_format($product['price'], 2, ',', ' ') . ' руб.</p>';
+                    echo '<button class="add-to-cart-btn" onclick="addToCart(' . (int)$product['id'] . ')">Добавить в корзину</button>';
+                    echo '</div>';
+                    echo '</div>';
                 }
-
-                echo '</div>';
-
-                echo '<button class="add-to-cart-btn" onclick="addToCart(' . (int)$product['id'] . ')">Добавить в корзину</button>';
-
-                echo '</div>';
+            } else {
+                echo '<p>Товары не найдены.</p>';
             }
-        } else {
-            echo '<p>Товары не найдены.</p>';
-        }
-        ?>
+            ?>
+        </div>
     </div>
-</div>
 
+    <script src="/bd/scripts/index_script.js"></script>  
 </body>
 </html>
